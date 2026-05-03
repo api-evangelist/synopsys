@@ -1,0 +1,108 @@
+vocabulary:
+  name: Synopsys API Vocabulary
+  description: >-
+    Vocabulary for Synopsys application security testing and EDA tool APIs,
+    covering SAST, SCA, IAST, DevSecOps, and semiconductor design licensing.
+  version: '1.0'
+  created: '2026-05-03'
+  terms:
+    - term: SAST
+      definition: >-
+        Static Application Security Testing — analysis of application source code
+        or compiled code for security vulnerabilities without executing the program.
+        Synopsys Coverity is the SAST tool on the Polaris platform.
+      tags:
+        - Static Analysis
+        - Security Testing
+        - Code Quality
+
+    - term: SCA
+      definition: >-
+        Software Composition Analysis — scanning of open-source and third-party
+        components for known vulnerabilities, license compliance issues, and
+        outdated dependencies. Black Duck provides SCA capabilities.
+      tags:
+        - Open Source
+        - License Compliance
+        - Vulnerability Management
+
+    - term: IAST
+      definition: >-
+        Interactive Application Security Testing — security testing performed
+        during application runtime by instrumenting the application and observing
+        behavior. Synopsys Seeker provides IAST capabilities.
+      tags:
+        - Runtime Testing
+        - Security Testing
+        - Instrumentation
+
+    - term: CWE
+      definition: >-
+        Common Weakness Enumeration — a community-developed list of software and
+        hardware weakness types used by Polaris to categorize security issues.
+      tags:
+        - Vulnerability Classification
+        - Standards
+        - Security
+
+    - term: CVE
+      definition: >-
+        Common Vulnerabilities and Exposures — publicly disclosed security
+        vulnerabilities assigned unique identifiers, used by Black Duck SCA
+        to track known component vulnerabilities.
+      tags:
+        - Vulnerability
+        - Standards
+        - Open Source
+
+    - term: Polaris
+      definition: >-
+        Synopsys's unified application security testing platform that integrates
+        SAST (Coverity), SCA (Black Duck), and IAST (Seeker) into a single
+        SCM-integrated testing workflow.
+      tags:
+        - Platform
+        - DevSecOps
+        - AppSec
+
+    - term: OpenLink
+      definition: >-
+        Synopsys Cloud's API specification enabling semiconductor vendors to
+        integrate with Synopsys Cloud for entitlement management and license
+        file delivery to EDA tool customers.
+      tags:
+        - EDA Tools
+        - License Management
+        - Cloud Platform
+
+    - term: Entitlement
+      definition: >-
+        A vendor-issued authorization granting a Synopsys Cloud customer the
+        right to use a specified quantity of EDA tool licenses for a defined period.
+      tags:
+        - Licensing
+        - EDA Tools
+        - Authorization
+
+    - term: Branch
+      definition: >-
+        A source code branch within a Polaris project representing a distinct
+        line of development, each with its own scan history and issue tracking.
+      tags:
+        - SCM
+        - Code Review
+        - Project Management
+
+  dimensions:
+    operational:
+      - Code Scanning and Analysis
+      - Issue Tracking and Remediation
+      - License Compliance Management
+      - Security Report Generation
+      - EDA License Distribution
+    capability:
+      - DevSecOps Pipeline Integration
+      - Application Security Testing
+      - Open Source Risk Management
+      - Semiconductor Tool Licensing
+      - Security Compliance Reporting

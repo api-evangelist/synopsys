@@ -1,0 +1,31 @@
+{
+  "request": {
+    "method": "POST",
+    "path": "/entitlements",
+    "headers": {
+      "X-API-Key": "{VENDOR_API_KEY}",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "customerId": "synopsys-cust-9012",
+      "productId": "vcs-pro-2026",
+      "requestId": "req-20260503-001"
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "customerId": "synopsys-cust-9012",
+      "entitlements": [
+        {
+          "entitlementId": "ent-vcs-001",
+          "productId": "vcs-pro-2026",
+          "productName": "Vendor Circuit Simulator Pro 2026",
+          "quantity": 10,
+          "expiresAt": "2027-05-03T00:00:00Z",
+          "licenseRequestApi": "https://licenses.vendor.com/openlink/v1/licenses"
+        }
+      ]
+    }
+  }
+}

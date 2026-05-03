@@ -1,0 +1,201 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "Synopsys Polaris API"
+  description: "Application security testing platform API for project management, scan orchestration, issue tracking, and security reporting."
+  tags:
+    - Synopsys
+    - Application Security
+    - Static Analysis
+    - DevSecOps
+  created: "2026-05-03"
+  modified: "2026-05-03"
+
+binds:
+  - namespace: env
+    keys:
+      POLARIS_ACCESS_TOKEN: POLARIS_ACCESS_TOKEN
+
+capability:
+  consumes:
+    - type: http
+      namespace: synopsys-polaris
+      baseUri: https://polaris.synopsys.com/api/v1
+      description: "Synopsys Polaris application security testing API."
+      authentication:
+        type: bearer
+        token: "{{POLARIS_ACCESS_TOKEN}}"
+      resources:
+        - name: projects
+          path: /portfolios/projects
+          description: "Security project management."
+          operations:
+            - name: list-projects
+              method: GET
+              description: "Retrieves a list of application security projects."
+              inputParameters:
+                - name: page
+                  in: query
+                  type: integer
+                  required: false
+                - name: pageSize
+                  in: query
+                  type: integer
+                  required: false
+                - name: filter
+                  in: query
+                  type: string
+                  required: false
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: get-project
+              method: GET
+              description: "Retrieves details for a specific security project."
+              inputParameters:
+                - name: projectId
+                  in: path
+                  type: string
+                  required: true
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+        - name: scans
+          path: /jobs/runs
+          description: "Scan run management."
+          operations:
+            - name: list-scans
+              method: GET
+              description: "Retrieves a list of scan runs with status and results."
+              inputParameters:
+                - name: projectId
+                  in: query
+                  type: string
+                  required: false
+                - name: branchId
+                  in: query
+                  type: string
+                  required: false
+                - name: status
+                  in: query
+                  type: string
+                  required: false
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+        - name: issues
+          path: /issues
+          description: "Security issue retrieval."
+          operations:
+            - name: list-issues
+              method: GET
+              description: "Retrieves security issues found by Polaris scans."
+              inputParameters:
+                - name: projectId
+                  in: query
+                  type: string
+                  required: false
+                - name: branchId
+                  in: query
+                  type: string
+                  required: false
+                - name: severity
+                  in: query
+                  type: string
+                  required: false
+                - name: type
+                  in: query
+                  type: string
+                  required: false
+                - name: page
+                  in: query
+                  type: integer
+                  required: false
+                - name: pageSize
+                  in: query
+                  type: integer
+                  required: false
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: get-issue
+              method: GET
+              description: "Retrieves details for a specific security issue."
+              inputParameters:
+                - name: issueId
+                  in: path
+                  type: string
+                  required: true
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+        - name: reports
+          path: /reports
+          description: "Security report generation."
+          operations:
+            - name: generate-report
+              method: POST
+              description: "Initiates generation of a security report."
+              inputParameters:
+                - name: projectId
+                  in: body
+                  type: string
+                  required: true
+                - name: format
+                  in: body
+                  type: string
+                  required: true
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+              body:
+                type: json
+                data:
+                  projectId: "{{tools.projectId}}"
+                  format: "{{tools.format}}"
+
+  exposes:
+    - type: rest
+      port: 8100
+      namespace: synopsys-polaris-api
+      resources:
+        - path: /v1/projects
+          name: projects
+          operations:
+            - method: GET
+              name: list-projects
+              call: "synopsys-polaris.list-projects"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9100
+      namespace: synopsys-polaris-mcp
+      transport: http
+      tools:
+        - name: list-projects
+          description: "List application security projects in Polaris."
+          hints:
+            readOnly: true
+            destructive: false
+            idempotent: true
+          call: "synopsys-polaris.list-projects"
+          outputParameters:
+            - type: object
+              mapping: "$."

@@ -1,0 +1,62 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://polaris.synopsys.com/schemas/security-issue",
+  "title": "Security Issue",
+  "description": "A security vulnerability or code quality issue discovered by Synopsys Polaris application security testing.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique issue identifier."
+    },
+    "type": {
+      "type": "string",
+      "enum": ["sast", "sca", "iast"],
+      "description": "Testing type that discovered the issue."
+    },
+    "severity": {
+      "type": "string",
+      "enum": ["critical", "high", "medium", "low"],
+      "description": "Issue severity level."
+    },
+    "name": {
+      "type": "string",
+      "description": "Issue name or vulnerability type."
+    },
+    "description": {
+      "type": "string",
+      "description": "Detailed description of the vulnerability."
+    },
+    "cwe": {
+      "type": "string",
+      "description": "Common Weakness Enumeration identifier."
+    },
+    "cve": {
+      "type": ["string", "null"],
+      "description": "Common Vulnerabilities and Exposures identifier."
+    },
+    "filePath": {
+      "type": "string",
+      "description": "Source file path where the issue was found."
+    },
+    "lineNumber": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Line number where the issue was found."
+    },
+    "status": {
+      "type": "string",
+      "enum": ["open", "dismissed", "fixed"],
+      "description": "Issue remediation status."
+    },
+    "projectId": {
+      "type": "string",
+      "description": "Associated project identifier."
+    },
+    "branchId": {
+      "type": "string",
+      "description": "Associated branch identifier."
+    }
+  },
+  "required": ["id", "type", "severity", "name", "status"]
+}

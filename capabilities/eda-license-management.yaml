@@ -1,0 +1,129 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "Synopsys EDA License Management"
+  description: >-
+    Cloud EDA license management capability using the Synopsys Cloud OpenLink API.
+    Enables semiconductor vendors and customers to query product entitlements
+    and generate license files for EDA tools, supporting both synchronous and
+    asynchronous license delivery.
+  tags:
+    - Synopsys
+    - EDA Tools
+    - License Management
+    - Semiconductor Design
+    - Cloud Platform
+  created: "2026-05-03"
+  modified: "2026-05-03"
+
+binds:
+  - namespace: env
+    keys:
+      SYNOPSYS_OPENLINK_API_KEY: SYNOPSYS_OPENLINK_API_KEY
+
+capability:
+  consumes:
+    - import: synopsys-openlink
+      location: ./shared/cloud-openlink.yaml
+
+  exposes:
+    - type: rest
+      port: 8081
+      namespace: synopsys-eda-license-api
+      description: "Unified REST API for Synopsys EDA tool license management."
+      resources:
+        - path: /v1/entitlements
+          name: entitlements
+          description: "EDA product license entitlements."
+          operations:
+            - method: POST
+              name: get-entitlements
+              description: "Query available EDA tool entitlements for a customer."
+              call: "synopsys-openlink.get-entitlements"
+              with:
+                customerId: "rest.customerId"
+                productId: "rest.productId"
+                requestId: "rest.requestId"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/licenses
+          name: licenses
+          description: "License file generation and download."
+          operations:
+            - method: POST
+              name: generate-license
+              description: "Generate a license file for a customer entitlement."
+              call: "synopsys-openlink.generate-license"
+              with:
+                entitlementId: "rest.entitlementId"
+                customerId: "rest.customerId"
+                hostId: "rest.hostId"
+                quantity: "rest.quantity"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/licenses/{licenseId}
+          name: license-download
+          description: "Download generated license files."
+          operations:
+            - method: GET
+              name: download-license
+              description: "Download a previously generated license file."
+              call: "synopsys-openlink.download-license"
+              with:
+                licenseId: "rest.licenseId"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9091
+      namespace: synopsys-eda-license-mcp
+      transport: http
+      description: "MCP server for AI-assisted EDA license management using Synopsys Cloud OpenLink."
+      tools:
+        - name: get-entitlements
+          description: "Query EDA tool license entitlements for a Synopsys Cloud customer."
+          hints:
+            readOnly: false
+            destructive: false
+            idempotent: true
+          call: "synopsys-openlink.get-entitlements"
+          with:
+            customerId: "tools.customerId"
+            productId: "tools.productId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: generate-license
+          description: "Generate a license file for a specific EDA tool entitlement."
+          hints:
+            readOnly: false
+            destructive: false
+            idempotent: false
+          call: "synopsys-openlink.generate-license"
+          with:
+            entitlementId: "tools.entitlementId"
+            customerId: "tools.customerId"
+            hostId: "tools.hostId"
+            quantity: "tools.quantity"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: download-license
+          description: "Download a previously generated EDA tool license file."
+          hints:
+            readOnly: true
+            destructive: false
+            idempotent: true
+          call: "synopsys-openlink.download-license"
+          with:
+            licenseId: "tools.licenseId"
+          outputParameters:
+            - type: object
+              mapping: "$."

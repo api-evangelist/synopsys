@@ -1,0 +1,43 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "polaris": "https://polaris.synopsys.com/vocab/",
+    "SecurityIssue": "polaris:SecurityIssue",
+    "ScanRun": "polaris:ScanRun",
+    "Project": "schema:SoftwareApplication",
+    "Branch": "polaris:Branch",
+    "Entitlement": "polaris:Entitlement",
+    "LicenseFile": "polaris:LicenseFile",
+    "issueId": "polaris:issueId",
+    "issueType": "polaris:issueType",
+    "severity": "polaris:severity",
+    "cwe": "polaris:cwe",
+    "cve": "polaris:cve",
+    "filePath": "polaris:filePath",
+    "lineNumber": "polaris:lineNumber",
+    "issueStatus": "polaris:issueStatus",
+    "projectId": "polaris:projectId",
+    "branchId": "polaris:branchId",
+    "scanId": "polaris:scanId",
+    "scanType": "polaris:scanType",
+    "scanStatus": "polaris:scanStatus",
+    "issueCount": "polaris:issueCount",
+    "customerId": "polaris:customerId",
+    "entitlementId": "polaris:entitlementId",
+    "licenseId": "polaris:licenseId",
+    "name": "schema:name",
+    "description": "schema:description",
+    "startedAt": {
+      "@id": "schema:startDate",
+      "@type": "schema:DateTime"
+    },
+    "completedAt": {
+      "@id": "schema:endDate",
+      "@type": "schema:DateTime"
+    },
+    "expiresAt": {
+      "@id": "schema:expires",
+      "@type": "schema:DateTime"
+    }
+  }
+}

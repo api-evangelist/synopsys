@@ -1,0 +1,51 @@
+{
+  "request": {
+    "method": "GET",
+    "path": "/issues",
+    "headers": {
+      "Authorization": "Bearer {POLARIS_ACCESS_TOKEN}"
+    },
+    "parameters": {
+      "projectId": "proj-webapp-backend",
+      "branchId": "branch-main",
+      "severity": "high",
+      "type": "sast",
+      "page": 1,
+      "pageSize": 20
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "data": [
+        {
+          "id": "issue-00781",
+          "type": "sast",
+          "severity": "high",
+          "name": "SQL Injection",
+          "description": "User-controlled input reaches a SQL query without sanitization.",
+          "cwe": "CWE-89",
+          "cve": null,
+          "filePath": "src/main/java/com/example/UserController.java",
+          "lineNumber": 142,
+          "status": "open"
+        },
+        {
+          "id": "issue-00782",
+          "type": "sast",
+          "severity": "high",
+          "name": "Cross-Site Scripting (XSS)",
+          "description": "Unsanitized user input reflected in HTML output.",
+          "cwe": "CWE-79",
+          "cve": null,
+          "filePath": "src/main/java/com/example/TemplateRenderer.java",
+          "lineNumber": 87,
+          "status": "open"
+        }
+      ],
+      "meta": {
+        "totalCount": 14
+      }
+    }
+  }
+}
