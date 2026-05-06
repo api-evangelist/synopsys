@@ -1,5 +1,6 @@
 specification: FinOps Framework
 specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
 alignedWith:
   framework: FinOps Foundation Framework
   frameworkUrl: https://www.finops.org/framework/
@@ -8,154 +9,63 @@ alignedWith:
   dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
 provider: Synopsys
 providerId: synopsys
-publisherName: Synopsys
-serviceCategory: API
+publisherName: Synopsys, Inc. (Software Integrity products billed via Black Duck Software, Inc.)
+serviceCategory: Application Security / EDA
 created: '2026-05-04'
-modified: '2026-05-04'
+modified: '2026-05-05'
+reconciled: false
 tags:
-  - Software Security
-  - Application Security Testing
-  - Static Analysis
-  - Software Composition Analysis
-  - EDA Tools
-  - Semiconductor Design
+  - Application Security
+  - EDA
+  - Semiconductor
   - FinOps
-  - Cost Management
   - FOCUS
-description: FinOps framework definition for the Synopsys API surface. Provides a FOCUS-aligned mapping
-  for cost allocation, usage measurement, and unit-economics reporting across the provider's APIs.
-principles:
-  - name: Visibility
-    description: Make API consumption costs visible to engineering, product, and finance teams in near
-      real-time.
-  - name: Allocation
-    description: Tag every chargeable API call with the consuming team, environment, application, and
-      feature so cost can be allocated.
-  - name: Optimization
-    description: Continuously evaluate request patterns, caching, batching, and tier selection to reduce
-      cost per useful unit of work.
-  - name: Accountability
-    description: Establish budget owners and chargeback or showback flows for each consuming team.
-domains:
-  - name: Understand Usage and Cost
-    capabilities:
-      - Data Ingestion
-      - Allocation
-      - Reporting and Analytics
-      - Anomaly Management
-  - name: Quantify Business Value
-    capabilities:
-      - Planning and Estimating
-      - Forecasting
-      - Budgeting
-      - Benchmarking
-      - Unit Economics
-  - name: Optimize Usage and Cost
-    capabilities:
-      - Architecting for Cloud
-      - Rate Optimization
-      - Workload Optimization
-      - Cloud Sustainability
-      - Licensing and SaaS
-  - name: Manage the FinOps Practice
-    capabilities:
-      - FinOps Practice Operations
-      - FinOps Education and Enablement
-      - Invoicing and Chargeback
-      - Onboarding Workloads
-      - Intersecting Disciplines
+description: Synopsys's APIs are bundled with paid product licenses (Polaris, Coverity, Seeker for AppSec; Synopsys Cloud / OpenLink for EDA). There is no usage-metered API billing surface; FinOps shape is approximated against the underlying license invoice.
+sources:
+  - https://www.synopsys.com
+  - https://polaris.synopsys.com/developer/default/documentation
+  - https://www.synopsys.com/cloud/openlink/api.html
+notes: No FOCUS-aligned per-call billing surface. Cost data is reconciled from license invoices issued by Synopsys, Inc. (EDA / Synopsys Cloud) and Black Duck Software, Inc. (former Synopsys Software Integrity Group products).
 billingModel:
-  pricingCategory: Usage-Based
-  billingFrequency: Monthly
+  pricingCategory: Enterprise License
+  billingFrequency: Annual
   billingCurrency: USD
   chargeCategories:
-    - Usage
     - Purchase
-    - Tax
-    - Credit
-    - Adjustment
-  chargeFrequency: Recurring
+    - Usage
 focusColumns:
-  ServiceName: Synopsys
-  ServiceCategory: Developer Tools / API
+  ServiceName: Synopsys APIs (Polaris, Coverity, Seeker, Cloud OpenLink)
+  ServiceCategory: Application Security / EDA
   ProviderName: Synopsys
-  PublisherName: Synopsys
-  InvoiceIssuerName: Synopsys
-  PricingCategory: Usage-Based
-  PricingUnit: request
+  PublisherName: Synopsys, Inc.
+  InvoiceIssuerName: Synopsys, Inc. / Black Duck Software, Inc.
   BillingCurrency: USD
-  ChargeCategory: Usage
 meters:
-  - name: api_requests
-    description: Count of billable API requests
-    unit: request
+  - name: appsec_developer_licenses
+    description: Developer / contributor licenses on Polaris, Coverity, and Seeker (the typical commercial unit for AppSec).
+    unit: developer
+    aggregation: max
+  - name: scanned_applications
+    description: Applications under scan / SCA - alternate commercial unit on some Polaris and Black Duck SKUs.
+    unit: application
+    aggregation: max
+  - name: eda_license_months
+    description: Synopsys Cloud / EDA tool license-months; the dominant commercial unit on the EDA side.
+    unit: license-month
     aggregation: sum
-    dimensions:
-      - api
-      - endpoint
-      - tier
-      - region
-      - consumer
-  - name: data_egress
-    description: Bytes returned over the network in API responses
-    unit: GB
-    aggregation: sum
-    dimensions:
-      - api
-      - region
-      - consumer
-  - name: compute_seconds
-    description: Server-side compute consumed by the request, where applicable
-    unit: second
-    aggregation: sum
-    dimensions:
-      - api
-      - endpoint
-      - tier
-apis:
-  - name: Synopsys Polaris API
-    baseURL: https://polaris.synopsys.com/api
-    tags:
-      - Application Security
-      - Static Analysis
-      - Software Composition Analysis
-      - DevSecOps
-      - CI/CD Integration
-    serviceName: Synopsys Polaris API
-    serviceCategory: API
-  - name: Synopsys Coverity REST API
-    baseURL: https://coverity.synopsys.com/api
-    tags:
-      - Static Analysis
-      - SAST
-      - Code Quality
-      - Defect Management
-      - Security Testing
-    serviceName: Synopsys Coverity REST API
-    serviceCategory: API
-  - name: Synopsys Cloud OpenLink API
-    baseURL: https://api.synopsys.com/openlink
-    tags:
-      - EDA Tools
-      - License Management
-      - Semiconductor Design
-      - Cloud Platform
-    serviceName: Synopsys Cloud OpenLink API
-    serviceCategory: API
-  - name: Synopsys Seeker REST API
-    baseURL: https://seeker.synopsys.com/api
-    tags:
-      - IAST
-      - Interactive Testing
-      - Vulnerability Management
-      - Application Security
-    serviceName: Synopsys Seeker REST API
-    serviceCategory: API
-unitEconomics:
-  - name: Cost per 1K Requests
-    metric: billed_cost / (api_requests / 1000)
-    target: TBD
-  - name: Cost per Active Consumer
-    metric: billed_cost / active_consumers
-    target: TBD
-maintainers: []
+  - name: openlink_entitlements
+    description: License entitlements distributed through the Cloud OpenLink API.
+    unit: entitlement
+    aggregation: count
+principles:
+  - name: Visibility
+    description: Visibility is on a per-license basis from Synopsys / Black Duck commercial portals; the API surface itself is not separately metered or invoiced.
+  - name: Allocation
+    description: Allocate by product (Polaris/Coverity/Seeker/Cloud) and by developer or application count - the same units Synopsys and Black Duck use on their invoices.
+  - name: Optimization
+    description: Optimization is commercial - right-size developer counts, consolidate AppSec tools onto a single platform, schedule EDA jobs to reduce concurrent license-month consumption, and renegotiate at term boundaries.
+  - name: Accountability
+    description: AppSec / DevSecOps team owns developer counts and scan policies; semiconductor design team owns EDA license consumption; procurement owns the Synopsys/Black Duck contracts.
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
