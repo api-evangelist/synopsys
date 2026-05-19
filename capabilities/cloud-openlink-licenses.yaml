@@ -1,0 +1,122 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Synopsys Cloud OpenLink API — Licenses
+  description: 'Synopsys Cloud OpenLink API — Licenses. 2 operations. Lead operation: Generate License File. Self-contained
+    Naftiko capability covering one Synopsys business surface.'
+  tags:
+  - Synopsys
+  - Licenses
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SYNOPSYS_API_KEY: SYNOPSYS_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: cloud-openlink-licenses
+    baseUri: https://api.synopsys.com/openlink/v1
+    description: Synopsys Cloud OpenLink API — Licenses business capability. Self-contained, no shared references.
+    resources:
+    - name: licenses
+      path: /licenses
+      operations:
+      - name: generatelicense
+        method: POST
+        description: Generate License File
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: licenses-licenseId
+      path: /licenses/{licenseId}
+      operations:
+      - name: downloadlicense
+        method: GET
+        description: Download License File
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: licenseId
+          in: path
+          type: string
+          description: License file identifier.
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.SYNOPSYS_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: cloud-openlink-licenses-rest
+    port: 8080
+    description: REST adapter for Synopsys Cloud OpenLink API — Licenses. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/licenses
+      name: licenses
+      description: REST surface for licenses.
+      operations:
+      - method: POST
+        name: generatelicense
+        description: Generate License File
+        call: cloud-openlink-licenses.generatelicense
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/licenses/{licenseid}
+      name: licenses-licenseid
+      description: REST surface for licenses-licenseId.
+      operations:
+      - method: GET
+        name: downloadlicense
+        description: Download License File
+        call: cloud-openlink-licenses.downloadlicense
+        with:
+          licenseId: rest.licenseId
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: cloud-openlink-licenses-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Synopsys Cloud OpenLink API — Licenses. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: generate-license-file
+      description: Generate License File
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: cloud-openlink-licenses.generatelicense
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: download-license-file
+      description: Download License File
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-openlink-licenses.downloadlicense
+      with:
+        licenseId: tools.licenseId
+      outputParameters:
+      - type: object
+        mapping: $.
