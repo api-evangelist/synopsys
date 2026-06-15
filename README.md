@@ -1,106 +1,122 @@
-# Synopsys
+# Synopsys (synopsys)
 
-Synopsys is a global leader in semiconductor design EDA tools and software security testing. The company's Software Integrity Group (now Black Duck) provides application security testing products including Polaris, Coverity (SAST), Black Duck (SCA), and Seeker (IAST). Synopsys also offers cloud-based EDA and semiconductor design services through the Synopsys Cloud platform.
+Synopsys is a global leader in semiconductor design EDA tools and software security testing. The company's Software Integrity Group (now rebranded as Black Duck) provides application security testing products including Polaris, Coverity (SAST), Black Duck (SCA), and Seeker (IAST). Synopsys also offers cloud-based EDA and semiconductor design services through the Synopsys Cloud platform with the OpenLink API for license entitlement management.
 
-**Type:** Company
-**Website:** [synopsys.com](https://www.synopsys.com)
-**Developer Portal:** [polaris.synopsys.com/developer](https://polaris.synopsys.com/developer/)
+**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/synopsys/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/synopsys/refs/heads/main/apis.yml)
+
+## Tags
+
+- Software Security
+- Application Security Testing
+- Static Analysis
+- Software Composition Analysis
+- EDA Tools
+- Semiconductor Design
+
+## Timestamps
+
+- **Created:** 2026-05-03
+- **Modified:** 2026-05-19
 
 ## APIs
 
-### Polaris API
+### Synopsys Polaris API
 
-The Polaris Software Integrity Platform API provides programmatic access to application security testing orchestration, project management, scan configuration, and issue tracking. Integrates with GitHub, GitLab, Bitbucket, and Azure DevOps.
+The Polaris Software Integrity Platform API provides programmatic access to application security testing orchestration, project management, scan configuration, and issue tracking. Polaris integrates with GitHub, GitLab, Bitbucket, and Azure DevOps for event-driven security scanning automation across SAST, SCA, and IAST testing.
 
-- **Documentation:** [polaris.synopsys.com/developer/default/documentation](https://polaris.synopsys.com/developer/default/documentation)
-- **OpenAPI:** [openapi/synopsys-polaris-openapi.yml](openapi/synopsys-polaris-openapi.yml)
+- **Human URL:** [https://polaris.synopsys.com/developer/default/documentation](https://polaris.synopsys.com/developer/default/documentation)
+- **Base URL:** `https://polaris.synopsys.com/api`
 
-| Method | Path | Summary |
-|--------|------|---------|
-| GET | /portfolios/projects | List Projects |
-| GET | /portfolios/projects/{projectId} | Get Project |
-| GET | /portfolios/branches | List Branches |
-| GET | /jobs/runs | List Scans |
-| GET | /jobs/runs/{runId} | Get Scan Run |
-| GET | /issues | List Issues |
-| GET | /issues/{issueId} | Get Issue |
-| POST | /reports | Generate Report |
-| GET | /reports/{reportId} | Get Report |
+#### Tags
 
-### Cloud OpenLink API
+- Application Security
+- Static Analysis
+- Software Composition Analysis
+- DevSecOps
+- CI/CD Integration
 
-The Synopsys Cloud OpenLink API enables semiconductor vendors to interoperate with Synopsys Cloud for managing product entitlements and license distribution, supporting both synchronous and asynchronous license file delivery.
+#### Properties
 
-- **Documentation:** [synopsys.com/cloud/openlink/api.html](https://www.synopsys.com/cloud/openlink/api.html)
-- **OpenAPI:** [openapi/synopsys-cloud-openlink-openapi.yml](openapi/synopsys-cloud-openlink-openapi.yml)
+- [Documentation](https://polaris.synopsys.com/developer/default/documentation)
+- [A P I Quickstart](https://polaris.synopsys.com/developer/default/documentation/t_api-quickstart)
+- [OpenAPI](openapi/synopsys-polaris-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [Postman Collection](collections/synopsys-polaris.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/synopsys-polaris.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Spectral Rules](rules/synopsys-rules.yml)
 
-| Method | Path | Summary |
-|--------|------|---------|
-| POST | /entitlements | Get Vendor Entitlements |
-| POST | /licenses | Generate License File |
-| GET | /licenses/{licenseId} | Download License File |
+### Synopsys Coverity REST API
 
-### Coverity REST API
+The Coverity Platform REST API provides programmatic access to Coverity static analysis results, project and stream management, defect management, and security findings. Coverity performs deep source code examination across 20+ programming languages and 70+ frameworks to detect critical quality and security defects.
 
-The Coverity Platform REST API provides programmatic access to static analysis results, project management, and defect tracking.
+- **Human URL:** [https://community.synopsys.com/s/topic/0TO34000000LmwWGAS/rest-api](https://community.synopsys.com/s/topic/0TO34000000LmwWGAS/rest-api)
+- **Base URL:** `https://coverity.synopsys.com/api`
 
-- **Documentation:** [community.synopsys.com/s/topic/0TO34000000LmwWGAS/rest-api](https://community.synopsys.com/s/topic/0TO34000000LmwWGAS/rest-api)
+#### Tags
 
-### Seeker REST API
+- Static Analysis
+- SAST
+- Code Quality
+- Defect Management
+- Security Testing
 
-The Seeker REST API provides access to IAST vulnerability findings, project management, and compliance reporting.
+#### Properties
 
-- **Documentation:** [Seeker API Documentation](https://demo.seeker.synopsys.com/internal/help/en/topics/r_using_apis.html)
+- [Documentation](https://community.synopsys.com/s/topic/0TO34000000LmwWGAS/rest-api)
+- [Open A P I Spec](https://documentation.blackduck.com/bundle/coverity-docs/page/cim-api-docs/openapi/cim-openapi.html)
+- [Postman Collection](collections/synopsys-cloud-openlink.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/synopsys-cloud-openlink.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Postman Collection](collections/synopsys-polaris.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/synopsys-polaris.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
 
-## Naftiko Capabilities
+### Synopsys Cloud OpenLink API
 
-### Shared Definitions
+The Synopsys Cloud OpenLink API enables semiconductor vendors to interoperate with Synopsys Cloud for managing product entitlements and license distribution. The API supports API key and OAuth2 authentication with JSON payloads over HTTPS. It exposes vendor entitlement endpoints and license request endpoints for both synchronous and asynchronous license delivery.
 
-| File | Description |
-|------|-------------|
-| [capabilities/shared/polaris.yaml](capabilities/shared/polaris.yaml) | Polaris API consumed definition |
-| [capabilities/shared/cloud-openlink.yaml](capabilities/shared/cloud-openlink.yaml) | Cloud OpenLink API consumed definition |
+- **Human URL:** [https://www.synopsys.com/cloud/openlink/api.html](https://www.synopsys.com/cloud/openlink/api.html)
+- **Base URL:** `https://api.synopsys.com/openlink`
 
-### Workflow Capabilities
+#### Tags
 
-| Capability | Description | Tools |
-|-----------|-------------|-------|
-| [application-security-testing.yaml](capabilities/application-security-testing.yaml) | Unified AppSec testing (projects + scans + issues + reports) | 6 tools |
-| [eda-license-management.yaml](capabilities/eda-license-management.yaml) | EDA tool license management (entitlements + license generation) | 3 tools |
+- EDA Tools
+- License Management
+- Semiconductor Design
+- Cloud Platform
 
-## Artifacts
+#### Properties
 
-| Type | File |
-|------|------|
-| OpenAPI | [openapi/synopsys-polaris-openapi.yml](openapi/synopsys-polaris-openapi.yml) |
-| OpenAPI | [openapi/synopsys-cloud-openlink-openapi.yml](openapi/synopsys-cloud-openlink-openapi.yml) |
-| Spectral Rules | [rules/synopsys-rules.yml](rules/synopsys-rules.yml) |
-| JSON Schema | [json-schema/synopsys-security-issue-schema.json](json-schema/synopsys-security-issue-schema.json) |
-| JSON Structure | [json-structure/synopsys-security-issue-structure.json](json-structure/synopsys-security-issue-structure.json) |
-| JSON-LD Context | [json-ld/synopsys-context.jsonld](json-ld/synopsys-context.jsonld) |
-| Vocabulary | [vocabulary/synopsys-vocabulary.yml](vocabulary/synopsys-vocabulary.yml) |
+- [Documentation](https://www.synopsys.com/cloud/openlink/api.html)
+- [OpenAPI](openapi/synopsys-cloud-openlink-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [Postman Collection](collections/synopsys-cloud-openlink.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/synopsys-cloud-openlink.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
 
-## Examples
+### Synopsys Seeker REST API
 
-| File | Description |
-|------|-------------|
-| [examples/synopsys-polaris-listIssues-example.json](examples/synopsys-polaris-listIssues-example.json) | List security issues response |
-| [examples/synopsys-cloud-openlink-getEntitlements-example.json](examples/synopsys-cloud-openlink-getEntitlements-example.json) | Get license entitlements response |
+The Seeker REST API provides programmatic access to Seeker IAST (Interactive Application Security Testing) functionality including project management, vulnerability export, compliance reporting, and administration automation.
 
-## Features
+- **Human URL:** [https://demo.seeker.synopsys.com/internal/help/en/topics/r_using_apis.html](https://demo.seeker.synopsys.com/internal/help/en/topics/r_using_apis.html)
+- **Base URL:** `https://seeker.synopsys.com/api`
 
-- Static Application Security Testing (SAST) via Coverity
-- Software Composition Analysis (SCA) via Black Duck
-- Interactive Application Security Testing (IAST) via Seeker
-- DevSecOps Pipeline Integration
-- GitHub, GitLab, Bitbucket, Azure DevOps Integration
-- CWE and CVE-based Issue Classification
-- Security Report Generation (PDF, JSON, CSV)
-- EDA Tool License Entitlement Management
-- Synchronous and Asynchronous License Delivery
-- GitHub Actions Integration
+#### Tags
 
-## Maintainers
+- IAST
+- Interactive Testing
+- Vulnerability Management
+- Application Security
 
-**FN:** API Evangelist
-**Email:** info@apievangelist.com
+#### Properties
+
+- [Documentation](https://demo.seeker.synopsys.com/internal/help/en/topics/r_using_apis.html)
+- [Postman Collection](collections/synopsys-cloud-openlink.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/synopsys-cloud-openlink.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Postman Collection](collections/synopsys-polaris.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/synopsys-polaris.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+
+## Common Properties
+
+- [LinkedIn](https://www.linkedin.com/company/synopsys)
+- [Website](https://www.synopsys.com)
+- [Developer Portal](https://polaris.synopsys.com/developer/)
+- [Community](https://community.synopsys.com/)
+- [Git Hub Org](https://github.com/synopsys-sig)
+- [J S O N L D Context](json-ld/synopsys-context.jsonld)
+- [Vocabulary](vocabulary/synopsys-vocabulary.yml)

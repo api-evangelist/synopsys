@@ -1,0 +1,253 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Synopsys Polaris API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Projects",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Projects",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://polaris.synopsys.com/api/v1/portfolios/projects",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "Filter expression."
+              }
+            ]
+          },
+          "docs": "Retrieves a list of application security projects registered in the Polaris platform."
+        },
+        {
+          "info": {
+            "name": "Get Project",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://polaris.synopsys.com/api/v1/portfolios/projects/:projectId",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieves details for a specific security project."
+        },
+        {
+          "info": {
+            "name": "List Branches",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://polaris.synopsys.com/api/v1/portfolios/branches",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieves branches for projects in the Polaris platform."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Scans",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Scans",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://polaris.synopsys.com/api/v1/jobs/runs",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "branchId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieves a list of scan runs with their status and results."
+        },
+        {
+          "info": {
+            "name": "Get Scan Run",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://polaris.synopsys.com/api/v1/jobs/runs/:runId",
+            "params": [
+              {
+                "name": "runId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieves details for a specific scan run."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Issues",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Issues",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://polaris.synopsys.com/api/v1/issues",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "branchId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "severity",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieves security issues found by Polaris scans across SAST, SCA, and IAST testing types."
+        },
+        {
+          "info": {
+            "name": "Get Issue",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://polaris.synopsys.com/api/v1/issues/:issueId",
+            "params": [
+              {
+                "name": "issueId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieves details for a specific security issue."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Reports",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Generate Report",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://polaris.synopsys.com/api/v1/reports",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Initiates generation of a security report for a project or branch."
+        },
+        {
+          "info": {
+            "name": "Get Report",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://polaris.synopsys.com/api/v1/reports/:reportId",
+            "params": [
+              {
+                "name": "reportId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieves a generated security report."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
