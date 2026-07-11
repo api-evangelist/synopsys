@@ -95,6 +95,10 @@ apis:
       - type: Documentation
         url: https://demo.seeker.synopsys.com/internal/help/en/topics/r_using_apis.html
 common:
+  - type: Authentication
+    url: authentication/synopsys-authentication.yml
+  - type: OAuthScopes
+    url: scopes/synopsys-scopes.yml
   - type: LinkedIn
     url: https://www.linkedin.com/company/synopsys
   - type: Website

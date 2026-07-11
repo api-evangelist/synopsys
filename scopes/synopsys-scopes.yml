@@ -1,0 +1,16 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/synopsys-cloud-openlink-openapi.yml
+schemes:
+- name: oauth2
+  source: openapi/synopsys-cloud-openlink-openapi.yml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://api.synopsys.com/oauth/token
+scopes:
+- scope: openlink
+  description: Access OpenLink API
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/synopsys-cloud-openlink-openapi.yml
