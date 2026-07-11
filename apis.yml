@@ -95,6 +95,8 @@ apis:
       - type: Documentation
         url: https://demo.seeker.synopsys.com/internal/help/en/topics/r_using_apis.html
 common:
+  - type: DomainSecurity
+    url: security/synopsys-domain-security.yml
   - type: Authentication
     url: authentication/synopsys-authentication.yml
   - type: OAuthScopes
