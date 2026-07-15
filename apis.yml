@@ -95,6 +95,8 @@ apis:
       - type: Documentation
         url: https://demo.seeker.synopsys.com/internal/help/en/topics/r_using_apis.html
 common:
+  - type: AgenticAccess
+    url: agentic-access/synopsys-agentic-access.yml
   - type: DomainSecurity
     url: security/synopsys-domain-security.yml
   - type: Authentication
