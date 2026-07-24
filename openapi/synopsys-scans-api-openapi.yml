@@ -1,0 +1,121 @@
+openapi: 3.1.0
+info:
+  title: Synopsys Cloud OpenLink Entitlements Scans API
+  description: The Synopsys Cloud OpenLink API enables semiconductor vendors to interoperate with Synopsys Cloud for managing product entitlements and license distribution. Vendors register endpoints during onboarding and respond to license queries from Synopsys Cloud. The API supports both synchronous and asynchronous license file delivery.
+  version: '1.0'
+  contact:
+    url: https://www.synopsys.com/cloud/openlink/api.html
+servers:
+- url: https://api.synopsys.com/openlink/v1
+  description: Synopsys Cloud OpenLink API
+security:
+- apiKeyAuth: []
+- oauth2: []
+tags:
+- name: Scans
+  description: Trigger and manage security scans.
+paths:
+  /jobs/runs:
+    get:
+      operationId: listScans
+      summary: List Scans
+      description: Retrieves a list of scan runs with their status and results.
+      tags:
+      - Scans
+      parameters:
+      - name: projectId
+        in: query
+        schema:
+          type: string
+      - name: branchId
+        in: query
+        schema:
+          type: string
+      - name: status
+        in: query
+        schema:
+          type: string
+          enum:
+          - queued
+          - running
+          - completed
+          - failed
+      responses:
+        '200':
+          description: Scan list returned
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScanList'
+  /jobs/runs/{runId}:
+    get:
+      operationId: getScan
+      summary: Get Scan Run
+      description: Retrieves details for a specific scan run.
+      tags:
+      - Scans
+      parameters:
+      - name: runId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Scan details returned
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Scan'
+components:
+  schemas:
+    ScanList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Scan'
+    Scan:
+      type: object
+      properties:
+        id:
+          type: string
+        projectId:
+          type: string
+        branchId:
+          type: string
+        status:
+          type: string
+          enum:
+          - queued
+          - running
+          - completed
+          - failed
+        scanType:
+          type: string
+          enum:
+          - sast
+          - sca
+          - iast
+        startedAt:
+          type: string
+          format: date-time
+        completedAt:
+          type: string
+          format: date-time
+        issueCount:
+          type: integer
+  securitySchemes:
+    apiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-Key
+      description: API key-based authentication
+    oauth2:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://api.synopsys.com/oauth/token
+          scopes:
+            openlink: Access OpenLink API

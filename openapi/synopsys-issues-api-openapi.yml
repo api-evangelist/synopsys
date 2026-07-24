@@ -1,0 +1,148 @@
+openapi: 3.1.0
+info:
+  title: Synopsys Cloud OpenLink Entitlements Issues API
+  description: The Synopsys Cloud OpenLink API enables semiconductor vendors to interoperate with Synopsys Cloud for managing product entitlements and license distribution. Vendors register endpoints during onboarding and respond to license queries from Synopsys Cloud. The API supports both synchronous and asynchronous license file delivery.
+  version: '1.0'
+  contact:
+    url: https://www.synopsys.com/cloud/openlink/api.html
+servers:
+- url: https://api.synopsys.com/openlink/v1
+  description: Synopsys Cloud OpenLink API
+security:
+- apiKeyAuth: []
+- oauth2: []
+tags:
+- name: Issues
+  description: Retrieve and manage security issues.
+paths:
+  /issues:
+    get:
+      operationId: listIssues
+      summary: List Issues
+      description: Retrieves security issues found by Polaris scans across SAST, SCA, and IAST testing types.
+      tags:
+      - Issues
+      parameters:
+      - name: projectId
+        in: query
+        schema:
+          type: string
+      - name: branchId
+        in: query
+        schema:
+          type: string
+      - name: severity
+        in: query
+        schema:
+          type: string
+          enum:
+          - critical
+          - high
+          - medium
+          - low
+      - name: type
+        in: query
+        schema:
+          type: string
+          enum:
+          - sast
+          - sca
+          - iast
+      - name: page
+        in: query
+        schema:
+          type: integer
+      - name: pageSize
+        in: query
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Issues list returned
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IssueList'
+  /issues/{issueId}:
+    get:
+      operationId: getIssue
+      summary: Get Issue
+      description: Retrieves details for a specific security issue.
+      tags:
+      - Issues
+      parameters:
+      - name: issueId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Issue details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Issue'
+components:
+  schemas:
+    Issue:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+          enum:
+          - sast
+          - sca
+          - iast
+        severity:
+          type: string
+          enum:
+          - critical
+          - high
+          - medium
+          - low
+        name:
+          type: string
+        description:
+          type: string
+        cwe:
+          type: string
+        cve:
+          type: string
+        filePath:
+          type: string
+        lineNumber:
+          type: integer
+        status:
+          type: string
+          enum:
+          - open
+          - dismissed
+          - fixed
+    IssueList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Issue'
+        meta:
+          type: object
+          properties:
+            totalCount:
+              type: integer
+  securitySchemes:
+    apiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-Key
+      description: API key-based authentication
+    oauth2:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://api.synopsys.com/oauth/token
+          scopes:
+            openlink: Access OpenLink API
