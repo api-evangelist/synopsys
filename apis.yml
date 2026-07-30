@@ -1,4 +1,18 @@
 aid: synopsys
+accessModel:
+  pricing: enterprise
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Enterprise · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/synopsys.png
 name: Synopsys
 description: >-
   Synopsys is a global leader in semiconductor design EDA tools and software security testing. The company's Software
@@ -17,83 +31,151 @@ tags:
   - Semiconductor Design
   - Fortune 1000
 apis:
-  - aid: synopsys:polaris
-    name: Synopsys Polaris API
-    description: >-
-      The Polaris Software Integrity Platform API provides programmatic access to application security testing
-      orchestration, project management, scan configuration, and issue tracking. Polaris integrates with GitHub, GitLab,
-      Bitbucket, and Azure DevOps for event-driven security scanning automation across SAST, SCA, and IAST testing.
-    humanURL: https://polaris.synopsys.com/developer/default/documentation
-    baseURL: https://polaris.synopsys.com/api
-    tags:
-      - Application Security
-      - Static Analysis
-      - Software Composition Analysis
-      - DevSecOps
-      - CI/CD Integration
-    properties:
-      - type: Documentation
-        url: https://polaris.synopsys.com/developer/default/documentation
-      - type: APIQuickstart
-        url: https://polaris.synopsys.com/developer/default/documentation/t_api-quickstart
-      - type: OpenAPI
-        url: openapi/synopsys-polaris-openapi.yml
-      - type: SpectralRules
-        url: rules/synopsys-rules.yml
-  - aid: synopsys:coverity
-    name: Synopsys Coverity REST API
-    description: >-
-      The Coverity Platform REST API provides programmatic access to Coverity static analysis results, project and
-      stream management, defect management, and security findings. Coverity performs deep source code examination across
-      20+ programming languages and 70+ frameworks to detect critical quality and security defects.
-    humanURL: https://community.synopsys.com/s/topic/0TO34000000LmwWGAS/rest-api
-    baseURL: https://coverity.synopsys.com/api
-    tags:
-      - Static Analysis
-      - SAST
-      - Code Quality
-      - Defect Management
-      - Security Testing
-    properties:
-      - type: Documentation
-        url: https://community.synopsys.com/s/topic/0TO34000000LmwWGAS/rest-api
-      - type: OpenAPISpec
-        url: https://documentation.blackduck.com/bundle/coverity-docs/page/cim-api-docs/openapi/cim-openapi.html
-  - aid: synopsys:cloud-openlink
-    name: Synopsys Cloud OpenLink API
-    description: >-
-      The Synopsys Cloud OpenLink API enables semiconductor vendors to interoperate with Synopsys Cloud for managing
-      product entitlements and license distribution. The API supports API key and OAuth2 authentication with JSON
-      payloads over HTTPS. It exposes vendor entitlement endpoints and license request endpoints for both synchronous
-      and asynchronous license delivery.
-    humanURL: https://www.synopsys.com/cloud/openlink/api.html
-    baseURL: https://api.synopsys.com/openlink
-    tags:
-      - EDA Tools
-      - License Management
-      - Semiconductor Design
-      - Cloud Platform
-    properties:
-      - type: Documentation
-        url: https://www.synopsys.com/cloud/openlink/api.html
-      - type: OpenAPI
-        url: openapi/synopsys-cloud-openlink-openapi.yml
-  - aid: synopsys:seeker
-    name: Synopsys Seeker REST API
-    description: >-
-      The Seeker REST API provides programmatic access to Seeker IAST (Interactive Application Security Testing)
-      functionality including project management, vulnerability export, compliance reporting, and administration
-      automation.
-    humanURL: https://demo.seeker.synopsys.com/internal/help/en/topics/r_using_apis.html
-    baseURL: https://seeker.synopsys.com/api
-    tags:
-      - IAST
-      - Interactive Testing
-      - Vulnerability Management
-      - Application Security
-    properties:
-      - type: Documentation
-        url: https://demo.seeker.synopsys.com/internal/help/en/topics/r_using_apis.html
+- aid: synopsys:coverity
+  name: Synopsys Coverity REST API
+  description: >-
+    The Coverity Platform REST API provides programmatic access to Coverity static analysis results, project
+    and stream management, defect management, and security findings. Coverity performs deep source code
+    examination across 20+ programming languages and 70+ frameworks to detect critical quality and security
+    defects.
+  humanURL: https://community.synopsys.com/s/topic/0TO34000000LmwWGAS/rest-api
+  baseURL: https://coverity.synopsys.com/api
+  tags:
+  - Static Analysis
+  - SAST
+  - Code Quality
+  - Defect Management
+  - Security Testing
+  properties:
+  - type: Documentation
+    url: https://community.synopsys.com/s/topic/0TO34000000LmwWGAS/rest-api
+  - type: OpenAPISpec
+    url: >-
+      https://documentation.blackduck.com/bundle/coverity-docs/page/cim-api-docs/openapi/cim-openapi.html
+- aid: synopsys:seeker
+  name: Synopsys Seeker REST API
+  description: >-
+    The Seeker REST API provides programmatic access to Seeker IAST (Interactive Application Security
+    Testing) functionality including project management, vulnerability export, compliance reporting, and
+    administration automation.
+  humanURL: https://demo.seeker.synopsys.com/internal/help/en/topics/r_using_apis.html
+  baseURL: https://seeker.synopsys.com/api
+  tags:
+  - IAST
+  - Interactive Testing
+  - Vulnerability Management
+  - Application Security
+  properties:
+  - type: Documentation
+    url: https://demo.seeker.synopsys.com/internal/help/en/topics/r_using_apis.html
+- aid: synopsys:synopsys-entitlements-api
+  name: Synopsys Entitlements API
+  description: Vendor entitlement queries from Synopsys Cloud.
+  humanURL: https://polaris.synopsys.com/developer/default/documentation
+  baseURL: https://polaris.synopsys.com/api
+  tags:
+  - Entitlements
+  properties:
+  - type: OpenAPI
+    url: openapi/synopsys-entitlements-api-openapi.yml
+  - type: Documentation
+    url: https://polaris.synopsys.com/developer/default/documentation
+  - type: APIQuickstart
+    url: https://polaris.synopsys.com/developer/default/documentation/t_api-quickstart
+  - type: SpectralRules
+    url: rules/synopsys-rules.yml
+  - type: Documentation
+    url: https://www.synopsys.com/cloud/openlink/api.html
+- aid: synopsys:synopsys-issues-api
+  name: Synopsys Issues API
+  description: Retrieve and manage security issues.
+  humanURL: https://polaris.synopsys.com/developer/default/documentation
+  baseURL: https://polaris.synopsys.com/api
+  tags:
+  - Issues
+  properties:
+  - type: OpenAPI
+    url: openapi/synopsys-issues-api-openapi.yml
+  - type: Documentation
+    url: https://polaris.synopsys.com/developer/default/documentation
+  - type: APIQuickstart
+    url: https://polaris.synopsys.com/developer/default/documentation/t_api-quickstart
+  - type: SpectralRules
+    url: rules/synopsys-rules.yml
+  - type: Documentation
+    url: https://www.synopsys.com/cloud/openlink/api.html
+- aid: synopsys:synopsys-licenses-api
+  name: Synopsys Licenses API
+  description: License file generation and delivery.
+  humanURL: https://polaris.synopsys.com/developer/default/documentation
+  baseURL: https://polaris.synopsys.com/api
+  tags:
+  - Licenses
+  properties:
+  - type: OpenAPI
+    url: openapi/synopsys-licenses-api-openapi.yml
+  - type: Documentation
+    url: https://polaris.synopsys.com/developer/default/documentation
+  - type: APIQuickstart
+    url: https://polaris.synopsys.com/developer/default/documentation/t_api-quickstart
+  - type: SpectralRules
+    url: rules/synopsys-rules.yml
+  - type: Documentation
+    url: https://www.synopsys.com/cloud/openlink/api.html
+- aid: synopsys:synopsys-projects-api
+  name: Synopsys Projects API
+  description: Project and branch management.
+  humanURL: https://polaris.synopsys.com/developer/default/documentation
+  baseURL: https://polaris.synopsys.com/api
+  tags:
+  - Projects
+  properties:
+  - type: OpenAPI
+    url: openapi/synopsys-projects-api-openapi.yml
+  - type: Documentation
+    url: https://polaris.synopsys.com/developer/default/documentation
+  - type: APIQuickstart
+    url: https://polaris.synopsys.com/developer/default/documentation/t_api-quickstart
+  - type: SpectralRules
+    url: rules/synopsys-rules.yml
+  - type: Documentation
+    url: https://www.synopsys.com/cloud/openlink/api.html
+- aid: synopsys:synopsys-reports-api
+  name: Synopsys Reports API
+  description: Generate and retrieve security reports.
+  humanURL: https://polaris.synopsys.com/developer/default/documentation
+  baseURL: https://polaris.synopsys.com/api
+  tags:
+  - Reports
+  properties:
+  - type: OpenAPI
+    url: openapi/synopsys-reports-api-openapi.yml
+  - type: Documentation
+    url: https://polaris.synopsys.com/developer/default/documentation
+  - type: APIQuickstart
+    url: https://polaris.synopsys.com/developer/default/documentation/t_api-quickstart
+  - type: SpectralRules
+    url: rules/synopsys-rules.yml
+  - type: Documentation
+    url: https://www.synopsys.com/cloud/openlink/api.html
+- aid: synopsys:synopsys-scans-api
+  name: Synopsys Scans API
+  description: Trigger and manage security scans.
+  humanURL: https://polaris.synopsys.com/developer/default/documentation
+  baseURL: https://polaris.synopsys.com/api
+  tags:
+  - Scans
+  properties:
+  - type: OpenAPI
+    url: openapi/synopsys-scans-api-openapi.yml
+  - type: Documentation
+    url: https://polaris.synopsys.com/developer/default/documentation
+  - type: APIQuickstart
+    url: https://polaris.synopsys.com/developer/default/documentation/t_api-quickstart
+  - type: SpectralRules
+    url: rules/synopsys-rules.yml
+  - type: Documentation
+    url: https://www.synopsys.com/cloud/openlink/api.html
 common:
   - type: AgenticAccess
     url: agentic-access/synopsys-agentic-access.yml
