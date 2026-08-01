@@ -1,0 +1,24 @@
+{
+  "provider": "synopsys",
+  "sources": [
+    "synopsys-entitlements-api-openapi.yml",
+    "synopsys-issues-api-openapi.yml",
+    "synopsys-licenses-api-openapi.yml",
+    "synopsys-projects-api-openapi.yml",
+    "synopsys-reports-api-openapi.yml",
+    "synopsys-scans-api-openapi.yml"
+  ],
+  "outputs": [
+    "synopsys-entitlements-api-openapi.yml",
+    "synopsys-issues-api-openapi.yml",
+    "synopsys-licenses-api-openapi.yml",
+    "synopsys-projects-api-openapi.yml",
+    "synopsys-reports-api-openapi.yml",
+    "synopsys-scans-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

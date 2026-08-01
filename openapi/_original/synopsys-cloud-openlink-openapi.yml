@@ -1,0 +1,239 @@
+openapi: 3.1.0
+info:
+  title: Synopsys Cloud OpenLink API
+  description: >-
+    The Synopsys Cloud OpenLink API enables semiconductor vendors to interoperate
+    with Synopsys Cloud for managing product entitlements and license distribution.
+    Vendors register endpoints during onboarding and respond to license queries
+    from Synopsys Cloud. The API supports both synchronous and asynchronous
+    license file delivery.
+  version: '1.0'
+  contact:
+    url: https://www.synopsys.com/cloud/openlink/api.html
+servers:
+  - url: https://api.synopsys.com/openlink/v1
+    description: Synopsys Cloud OpenLink API
+security:
+  - apiKeyAuth: []
+  - oauth2: []
+tags:
+  - name: Entitlements
+    description: Vendor entitlement queries from Synopsys Cloud.
+  - name: Licenses
+    description: License file generation and delivery.
+paths:
+  /entitlements:
+    post:
+      operationId: getEntitlements
+      summary: Get Vendor Entitlements
+      description: >-
+        Called by Synopsys Cloud to retrieve available licenses for a specific
+        customer. This endpoint is registered by the vendor during onboarding.
+        Returns an array of entitlements with associated license details.
+      tags:
+        - Entitlements
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EntitlementRequest'
+      responses:
+        '200':
+          description: Entitlements returned
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EntitlementResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+  /licenses:
+    post:
+      operationId: generateLicense
+      summary: Generate License File
+      description: >-
+        Called by Synopsys Cloud to generate and retrieve a license file for a
+        customer. This endpoint is dynamically provided via the entitlement
+        response. Supports synchronous delivery (within 20 seconds) and
+        asynchronous delivery with polling.
+      tags:
+        - Licenses
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LicenseRequest'
+      responses:
+        '200':
+          description: License generated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LicenseResponse'
+        '202':
+          description: Asynchronous license generation initiated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncLicenseResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /licenses/{licenseId}:
+    get:
+      operationId: downloadLicense
+      summary: Download License File
+      description: >-
+        Retrieves a previously generated license file by its identifier.
+        Used for asynchronous license polling scenarios.
+      tags:
+        - Licenses
+      parameters:
+        - name: licenseId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: License file identifier.
+      responses:
+        '200':
+          description: License file content returned
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LicenseResponse'
+        '202':
+          description: License not yet ready
+        '404':
+          description: License not found
+components:
+  securitySchemes:
+    apiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-Key
+      description: API key-based authentication
+    oauth2:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://api.synopsys.com/oauth/token
+          scopes:
+            openlink: Access OpenLink API
+  schemas:
+    EntitlementRequest:
+      type: object
+      required:
+        - customerId
+        - productId
+      properties:
+        customerId:
+          type: string
+          description: Synopsys Cloud customer identifier.
+        productId:
+          type: string
+          description: Product/tool identifier for which licenses are requested.
+        requestId:
+          type: string
+          description: Unique request identifier for traceability.
+    EntitlementResponse:
+      type: object
+      properties:
+        customerId:
+          type: string
+        entitlements:
+          type: array
+          items:
+            $ref: '#/components/schemas/Entitlement'
+    Entitlement:
+      type: object
+      properties:
+        entitlementId:
+          type: string
+        productId:
+          type: string
+        productName:
+          type: string
+        quantity:
+          type: integer
+          description: Number of available license seats.
+        expiresAt:
+          type: string
+          format: date-time
+        licenseRequestApi:
+          type: string
+          description: Dynamic URL for license generation for this entitlement.
+    LicenseRequest:
+      type: object
+      required:
+        - entitlementId
+        - customerId
+      properties:
+        entitlementId:
+          type: string
+        customerId:
+          type: string
+        hostId:
+          type: string
+          description: Machine or host identifier for license binding.
+        quantity:
+          type: integer
+    LicenseResponse:
+      type: object
+      properties:
+        licenseId:
+          type: string
+        downloadType:
+          type: string
+          enum: [Sync, Async]
+        licenseData:
+          type: string
+          description: Base64-encoded license file content (synchronous delivery).
+        expiresAt:
+          type: string
+          format: date-time
+    AsyncLicenseResponse:
+      type: object
+      properties:
+        licenseId:
+          type: string
+        downloadType:
+          type: string
+          enum: [Async]
+        pollStartDateTime:
+          type: string
+          format: date-time
+          description: When to begin polling for the license.
+        pollIntervalSec:
+          type: integer
+          description: Suggested polling interval in seconds.
+        downloadApi:
+          type: object
+          properties:
+            url:
+              type: string
+              description: URL to poll for license retrieval.
+    ErrorResponse:
+      type: object
+      properties:
+        code:
+          type: string
+          description: Vendor-specific error code.
+        message:
+          type: string
+          description: Customer-facing error description.
+        statusCode:
+          type: integer
+        tid:
+          type: string
+          description: Optional trace identifier.

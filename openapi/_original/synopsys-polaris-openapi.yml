@@ -1,0 +1,409 @@
+openapi: 3.1.0
+info:
+  title: Synopsys Polaris API
+  description: >-
+    The Synopsys Polaris Software Integrity Platform API provides programmatic
+    access to application security testing operations including project management,
+    scan triggering, issue retrieval, and reporting. Polaris integrates with
+    major SCMs and CI/CD systems to enable event-driven security testing automation.
+  version: '1.0'
+  contact:
+    url: https://polaris.synopsys.com/developer/default/documentation
+servers:
+  - url: https://polaris.synopsys.com/api/v1
+    description: Polaris API
+security:
+  - bearerAuth: []
+tags:
+  - name: Projects
+    description: Project and branch management.
+  - name: Scans
+    description: Trigger and manage security scans.
+  - name: Issues
+    description: Retrieve and manage security issues.
+  - name: Reports
+    description: Generate and retrieve security reports.
+paths:
+  /portfolios/projects:
+    get:
+      operationId: listProjects
+      summary: List Projects
+      description: >-
+        Retrieves a list of application security projects registered
+        in the Polaris platform.
+      tags:
+        - Projects
+      parameters:
+        - name: page
+          in: query
+          schema:
+            type: integer
+        - name: pageSize
+          in: query
+          schema:
+            type: integer
+        - name: filter
+          in: query
+          schema:
+            type: string
+          description: Filter expression.
+      responses:
+        '200':
+          description: Project list returned
+          content:
+            application/vnd.polaris.portfolios-1+json:
+              schema:
+                $ref: '#/components/schemas/ProjectList'
+        '401':
+          description: Unauthorized
+  /portfolios/projects/{projectId}:
+    get:
+      operationId: getProject
+      summary: Get Project
+      description: Retrieves details for a specific security project.
+      tags:
+        - Projects
+      parameters:
+        - name: projectId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Project details
+          content:
+            application/vnd.polaris.portfolios-1+json:
+              schema:
+                $ref: '#/components/schemas/Project'
+        '404':
+          description: Project not found
+  /portfolios/branches:
+    get:
+      operationId: listBranches
+      summary: List Branches
+      description: Retrieves branches for projects in the Polaris platform.
+      tags:
+        - Projects
+      parameters:
+        - name: projectId
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Branch list returned
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BranchList'
+  /jobs/runs:
+    get:
+      operationId: listScans
+      summary: List Scans
+      description: Retrieves a list of scan runs with their status and results.
+      tags:
+        - Scans
+      parameters:
+        - name: projectId
+          in: query
+          schema:
+            type: string
+        - name: branchId
+          in: query
+          schema:
+            type: string
+        - name: status
+          in: query
+          schema:
+            type: string
+            enum: [queued, running, completed, failed]
+      responses:
+        '200':
+          description: Scan list returned
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScanList'
+  /jobs/runs/{runId}:
+    get:
+      operationId: getScan
+      summary: Get Scan Run
+      description: Retrieves details for a specific scan run.
+      tags:
+        - Scans
+      parameters:
+        - name: runId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Scan details returned
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Scan'
+  /issues:
+    get:
+      operationId: listIssues
+      summary: List Issues
+      description: >-
+        Retrieves security issues found by Polaris scans across SAST, SCA,
+        and IAST testing types.
+      tags:
+        - Issues
+      parameters:
+        - name: projectId
+          in: query
+          schema:
+            type: string
+        - name: branchId
+          in: query
+          schema:
+            type: string
+        - name: severity
+          in: query
+          schema:
+            type: string
+            enum: [critical, high, medium, low]
+        - name: type
+          in: query
+          schema:
+            type: string
+            enum: [sast, sca, iast]
+        - name: page
+          in: query
+          schema:
+            type: integer
+        - name: pageSize
+          in: query
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Issues list returned
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IssueList'
+  /issues/{issueId}:
+    get:
+      operationId: getIssue
+      summary: Get Issue
+      description: Retrieves details for a specific security issue.
+      tags:
+        - Issues
+      parameters:
+        - name: issueId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Issue details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Issue'
+  /reports:
+    post:
+      operationId: generateReport
+      summary: Generate Report
+      description: >-
+        Initiates generation of a security report for a project or branch.
+      tags:
+        - Reports
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReportRequest'
+      responses:
+        '202':
+          description: Report generation started
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReportJob'
+  /reports/{reportId}:
+    get:
+      operationId: getReport
+      summary: Get Report
+      description: Retrieves a generated security report.
+      tags:
+        - Reports
+      parameters:
+        - name: reportId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Report content
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Report'
+        '202':
+          description: Report still generating
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Access token obtained from Polaris portal
+  schemas:
+    ProjectList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Project'
+        meta:
+          type: object
+          properties:
+            totalCount:
+              type: integer
+    Project:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        organization:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        branches:
+          type: array
+          items:
+            type: string
+    BranchList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              name:
+                type: string
+              projectId:
+                type: string
+    ScanList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Scan'
+    Scan:
+      type: object
+      properties:
+        id:
+          type: string
+        projectId:
+          type: string
+        branchId:
+          type: string
+        status:
+          type: string
+          enum: [queued, running, completed, failed]
+        scanType:
+          type: string
+          enum: [sast, sca, iast]
+        startedAt:
+          type: string
+          format: date-time
+        completedAt:
+          type: string
+          format: date-time
+        issueCount:
+          type: integer
+    IssueList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Issue'
+        meta:
+          type: object
+          properties:
+            totalCount:
+              type: integer
+    Issue:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+          enum: [sast, sca, iast]
+        severity:
+          type: string
+          enum: [critical, high, medium, low]
+        name:
+          type: string
+        description:
+          type: string
+        cwe:
+          type: string
+        cve:
+          type: string
+        filePath:
+          type: string
+        lineNumber:
+          type: integer
+        status:
+          type: string
+          enum: [open, dismissed, fixed]
+    ReportRequest:
+      type: object
+      required:
+        - projectId
+        - format
+      properties:
+        projectId:
+          type: string
+        branchId:
+          type: string
+        format:
+          type: string
+          enum: [pdf, json, csv]
+        includeFixed:
+          type: boolean
+    ReportJob:
+      type: object
+      properties:
+        reportId:
+          type: string
+        status:
+          type: string
+          enum: [pending, generating, ready]
+    Report:
+      type: object
+      properties:
+        reportId:
+          type: string
+        projectId:
+          type: string
+        format:
+          type: string
+        generatedAt:
+          type: string
+          format: date-time
+        downloadUrl:
+          type: string
