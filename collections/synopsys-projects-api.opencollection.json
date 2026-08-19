@@ -1,0 +1,91 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Synopsys Cloud OpenLink Entitlements Projects API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-API-Key",
+      "value": "{{X-API-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Projects",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Projects",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.synopsys.com/openlink/v1/portfolios/projects",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "Filter expression."
+              }
+            ]
+          },
+          "docs": "Retrieves a list of application security projects registered in the Polaris platform."
+        },
+        {
+          "info": {
+            "name": "Get Project",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.synopsys.com/openlink/v1/portfolios/projects/:projectId",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieves details for a specific security project."
+        },
+        {
+          "info": {
+            "name": "List Branches",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.synopsys.com/openlink/v1/portfolios/branches",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieves branches for projects in the Polaris platform."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

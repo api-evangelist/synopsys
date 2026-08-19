@@ -1,0 +1,256 @@
+{
+  "item": [
+    {
+      "id": "bddbcb5d-60bb-4370-a866-8c195fedb506",
+      "name": "Scans",
+      "description": {
+        "content": "Trigger and manage security scans.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "2eb6f137-f07d-4241-b89a-d7dd13468ba6",
+          "name": "List Scans",
+          "request": {
+            "name": "List Scans",
+            "description": {
+              "content": "Retrieves a list of scan runs with their status and results.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "jobs",
+                "runs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "projectId",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "branchId",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7ce3f3cf-e388-445b-a25f-54ee44c3d58b",
+              "name": "Scan list returned",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "jobs",
+                    "runs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "projectId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "branchId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"projectId\": \"string\",\n      \"branchId\": \"string\",\n      \"status\": \"queued\",\n      \"scanType\": \"iast\",\n      \"startedAt\": \"1987-02-25T12:39:01.876Z\",\n      \"completedAt\": \"1952-11-17T20:04:17.949Z\",\n      \"issueCount\": 2147\n    },\n    {\n      \"id\": \"string\",\n      \"projectId\": \"string\",\n      \"branchId\": \"string\",\n      \"status\": \"failed\",\n      \"scanType\": \"sast\",\n      \"startedAt\": \"1952-02-27T06:50:13.019Z\",\n      \"completedAt\": \"1987-12-04T17:15:20.591Z\",\n      \"issueCount\": 1983\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c1f5d8ad-d779-4a21-81fd-1e416ea880c4",
+          "name": "Get Scan Run",
+          "request": {
+            "name": "Get Scan Run",
+            "description": {
+              "content": "Retrieves details for a specific scan run.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "jobs",
+                "runs",
+                ":runId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "runId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7452a8f8-adf4-4d12-b878-15e95dec0daf",
+              "name": "Scan details returned",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "jobs",
+                    "runs",
+                    ":runId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "runId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"projectId\": \"string\",\n  \"branchId\": \"string\",\n  \"status\": \"failed\",\n  \"scanType\": \"iast\",\n  \"startedAt\": \"1999-04-22T05:57:50.408Z\",\n  \"completedAt\": \"2012-05-30T14:12:03.570Z\",\n  \"issueCount\": 1750\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.synopsys.com/openlink/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-API-Key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "e8596275-1f8b-46fa-a4c0-d0403a24acf1",
+    "name": "Synopsys Cloud OpenLink Entitlements Scans API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Synopsys Cloud OpenLink API enables semiconductor vendors to interoperate with Synopsys Cloud for managing product entitlements and license distribution. Vendors register endpoints during onboarding and respond to license queries from Synopsys Cloud. The API supports both synchronous and asynchronous license file delivery.",
+      "type": "text/plain"
+    }
+  }
+}

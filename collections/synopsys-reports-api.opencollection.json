@@ -1,0 +1,59 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Synopsys Cloud OpenLink Entitlements Reports API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-API-Key",
+      "value": "{{X-API-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Reports",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Generate Report",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.synopsys.com/openlink/v1/reports",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Initiates generation of a security report for a project or branch."
+        },
+        {
+          "info": {
+            "name": "Get Report",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.synopsys.com/openlink/v1/reports/:reportId",
+            "params": [
+              {
+                "name": "reportId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieves a generated security report."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

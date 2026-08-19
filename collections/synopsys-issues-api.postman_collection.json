@@ -1,0 +1,279 @@
+{
+  "item": [
+    {
+      "id": "1e243fa3-ba4f-4c34-9e05-6f81d80a4340",
+      "name": "Issues",
+      "description": {
+        "content": "Retrieve and manage security issues.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a6067173-d18c-4a2e-9920-f3e5be08cbbc",
+          "name": "List Issues",
+          "request": {
+            "name": "List Issues",
+            "description": {
+              "content": "Retrieves security issues found by Polaris scans across SAST, SCA, and IAST testing types.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "issues"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "projectId",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "branchId",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "severity",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "type",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "pageSize",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ae1cefc0-f428-43b9-9947-7d4b5347a268",
+              "name": "Issues list returned",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "issues"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "projectId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "branchId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "severity",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"type\": \"sast\",\n      \"severity\": \"medium\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"cwe\": \"string\",\n      \"cve\": \"string\",\n      \"filePath\": \"string\",\n      \"lineNumber\": 6607,\n      \"status\": \"dismissed\"\n    },\n    {\n      \"id\": \"string\",\n      \"type\": \"iast\",\n      \"severity\": \"critical\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"cwe\": \"string\",\n      \"cve\": \"string\",\n      \"filePath\": \"string\",\n      \"lineNumber\": 4700,\n      \"status\": \"open\"\n    }\n  ],\n  \"meta\": {\n    \"totalCount\": 9985\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6800c6a6-9c22-4834-afc6-5dbdefdae8f2",
+          "name": "Get Issue",
+          "request": {
+            "name": "Get Issue",
+            "description": {
+              "content": "Retrieves details for a specific security issue.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "issues",
+                ":issueId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "issueId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3b913827-058f-4061-87a8-440e25c17962",
+              "name": "Issue details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "issues",
+                    ":issueId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "issueId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"type\": \"sast\",\n  \"severity\": \"critical\",\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"cwe\": \"string\",\n  \"cve\": \"string\",\n  \"filePath\": \"string\",\n  \"lineNumber\": 1394,\n  \"status\": \"fixed\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.synopsys.com/openlink/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-API-Key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "8bc88628-38ea-4919-81f2-12017c56887f",
+    "name": "Synopsys Cloud OpenLink Entitlements Issues API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Synopsys Cloud OpenLink API enables semiconductor vendors to interoperate with Synopsys Cloud for managing product entitlements and license distribution. Vendors register endpoints during onboarding and respond to license queries from Synopsys Cloud. The API supports both synchronous and asynchronous license file delivery.",
+      "type": "text/plain"
+    }
+  }
+}
