@@ -129,6 +129,8 @@ apis:
   humanURL: https://polaris.synopsys.com/developer/default/documentation
   baseURL: https://polaris.synopsys.com/api
   tags:
+  - Project
+  tags_raw:
   - Projects
   properties:
   - type: OpenAPI
