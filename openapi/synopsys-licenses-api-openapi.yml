@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Synopsys Cloud OpenLink Entitlements Licenses API
+  title: Synopsys Cloud OpenLink Licenses API
   description: The Synopsys Cloud OpenLink API enables semiconductor vendors to interoperate with Synopsys Cloud for managing product entitlements and license distribution. Vendors register endpoints during onboarding and respond to license queries from Synopsys Cloud. The API supports both synchronous and asynchronous license file delivery.
   version: '1.0'
   contact:
@@ -90,20 +90,6 @@ components:
         expiresAt:
           type: string
           format: date-time
-    ErrorResponse:
-      type: object
-      properties:
-        code:
-          type: string
-          description: Vendor-specific error code.
-        message:
-          type: string
-          description: Customer-facing error description.
-        statusCode:
-          type: integer
-        tid:
-          type: string
-          description: Optional trace identifier.
     LicenseRequest:
       type: object
       required:
@@ -141,6 +127,20 @@ components:
             url:
               type: string
               description: URL to poll for license retrieval.
+    ErrorResponse:
+      type: object
+      properties:
+        code:
+          type: string
+          description: Vendor-specific error code.
+        message:
+          type: string
+          description: Customer-facing error description.
+        statusCode:
+          type: integer
+        tid:
+          type: string
+          description: Optional trace identifier.
   securitySchemes:
     apiKeyAuth:
       type: apiKey

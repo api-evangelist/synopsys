@@ -1,17 +1,13 @@
 {
   "provider": "synopsys",
   "sources": [
-    "synopsys-entitlements-api-openapi.yml",
-    "synopsys-issues-api-openapi.yml",
-    "synopsys-licenses-api-openapi.yml",
-    "synopsys-projects-api-openapi.yml",
-    "synopsys-reports-api-openapi.yml",
-    "synopsys-scans-api-openapi.yml"
+    "_original/synopsys-cloud-openlink-openapi.yml",
+    "_original/synopsys-polaris-openapi.yml"
   ],
   "outputs": [
     "synopsys-entitlements-api-openapi.yml",
-    "synopsys-issues-api-openapi.yml",
     "synopsys-licenses-api-openapi.yml",
+    "synopsys-issues-api-openapi.yml",
     "synopsys-projects-api-openapi.yml",
     "synopsys-reports-api-openapi.yml",
     "synopsys-scans-api-openapi.yml"
@@ -19,6 +15,17 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (2 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "synopsys-cloud-openlink-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "synopsys-polaris-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0"
+  ],
+  "skipped": [
+    "synopsys-entitlements-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "synopsys-issues-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "synopsys-licenses-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "synopsys-projects-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "synopsys-reports-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "synopsys-scans-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

@@ -1,16 +1,15 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Synopsys Cloud OpenLink Entitlements Scans API
-  description: The Synopsys Cloud OpenLink API enables semiconductor vendors to interoperate with Synopsys Cloud for managing product entitlements and license distribution. Vendors register endpoints during onboarding and respond to license queries from Synopsys Cloud. The API supports both synchronous and asynchronous license file delivery.
+  title: Synopsys Polaris Scans API
+  description: The Synopsys Polaris Software Integrity Platform API provides programmatic access to application security testing operations including project management, scan triggering, issue retrieval, and reporting. Polaris integrates with major SCMs and CI/CD systems to enable event-driven security testing automation.
   version: '1.0'
   contact:
-    url: https://www.synopsys.com/cloud/openlink/api.html
+    url: https://polaris.synopsys.com/developer/default/documentation
 servers:
-- url: https://api.synopsys.com/openlink/v1
-  description: Synopsys Cloud OpenLink API
+- url: https://polaris.synopsys.com/api/v1
+  description: Polaris API
 security:
-- apiKeyAuth: []
-- oauth2: []
+- bearerAuth: []
 tags:
 - name: Scans
   description: Trigger and manage security scans.
@@ -107,15 +106,7 @@ components:
         issueCount:
           type: integer
   securitySchemes:
-    apiKeyAuth:
-      type: apiKey
-      in: header
-      name: X-API-Key
-      description: API key-based authentication
-    oauth2:
-      type: oauth2
-      flows:
-        clientCredentials:
-          tokenUrl: https://api.synopsys.com/oauth/token
-          scopes:
-            openlink: Access OpenLink API
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Access token obtained from Polaris portal
