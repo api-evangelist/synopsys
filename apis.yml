@@ -42,6 +42,7 @@ tags:
   - EDA Tools
   - Semiconductor Design
   - Fortune 1000
+  - Developer Tools
 apis:
 - aid: synopsys:coverity
   name: Synopsys Coverity REST API
