@@ -58,17 +58,6 @@ paths:
           description: Report still generating
 components:
   schemas:
-    ReportJob:
-      type: object
-      properties:
-        reportId:
-          type: string
-        status:
-          type: string
-          enum:
-          - pending
-          - generating
-          - ready
     Report:
       type: object
       properties:
@@ -83,6 +72,17 @@ components:
           format: date-time
         downloadUrl:
           type: string
+    ReportJob:
+      type: object
+      properties:
+        reportId:
+          type: string
+        status:
+          type: string
+          enum:
+          - pending
+          - generating
+          - ready
     ReportRequest:
       type: object
       required:

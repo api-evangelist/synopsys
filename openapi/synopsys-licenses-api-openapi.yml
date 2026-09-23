@@ -74,37 +74,6 @@ paths:
           description: License not found
 components:
   schemas:
-    LicenseResponse:
-      type: object
-      properties:
-        licenseId:
-          type: string
-        downloadType:
-          type: string
-          enum:
-          - Sync
-          - Async
-        licenseData:
-          type: string
-          description: Base64-encoded license file content (synchronous delivery).
-        expiresAt:
-          type: string
-          format: date-time
-    LicenseRequest:
-      type: object
-      required:
-      - entitlementId
-      - customerId
-      properties:
-        entitlementId:
-          type: string
-        customerId:
-          type: string
-        hostId:
-          type: string
-          description: Machine or host identifier for license binding.
-        quantity:
-          type: integer
     AsyncLicenseResponse:
       type: object
       properties:
@@ -141,6 +110,37 @@ components:
         tid:
           type: string
           description: Optional trace identifier.
+    LicenseResponse:
+      type: object
+      properties:
+        licenseId:
+          type: string
+        downloadType:
+          type: string
+          enum:
+          - Sync
+          - Async
+        licenseData:
+          type: string
+          description: Base64-encoded license file content (synchronous delivery).
+        expiresAt:
+          type: string
+          format: date-time
+    LicenseRequest:
+      type: object
+      required:
+      - entitlementId
+      - customerId
+      properties:
+        entitlementId:
+          type: string
+        customerId:
+          type: string
+        hostId:
+          type: string
+          description: Machine or host identifier for license binding.
+        quantity:
+          type: integer
   securitySchemes:
     apiKeyAuth:
       type: apiKey

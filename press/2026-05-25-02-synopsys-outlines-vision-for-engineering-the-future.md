@@ -1,7 +1,9 @@
 ---
 title: Synopsys Outlines Vision for Engineering the Future
 url: https://www.prnewswire.com/news-releases/synopsys-outlines-vision-for-engineering-the-future-302711205.html
-date: '2026-05-25'
+published: ''
+date_basis: harvested
+harvested: '2026-05-25'
 query: '"Synopsys" press release artificial intelligence'
 position: 2
 source: serpapi-google

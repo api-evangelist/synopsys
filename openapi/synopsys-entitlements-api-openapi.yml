@@ -45,6 +45,30 @@ paths:
           description: Unauthorized
 components:
   schemas:
+    EntitlementRequest:
+      type: object
+      required:
+      - customerId
+      - productId
+      properties:
+        customerId:
+          type: string
+          description: Synopsys Cloud customer identifier.
+        productId:
+          type: string
+          description: Product/tool identifier for which licenses are requested.
+        requestId:
+          type: string
+          description: Unique request identifier for traceability.
+    EntitlementResponse:
+      type: object
+      properties:
+        customerId:
+          type: string
+        entitlements:
+          type: array
+          items:
+            $ref: '#/components/schemas/Entitlement'
     Entitlement:
       type: object
       properties:
@@ -77,30 +101,6 @@ components:
         tid:
           type: string
           description: Optional trace identifier.
-    EntitlementResponse:
-      type: object
-      properties:
-        customerId:
-          type: string
-        entitlements:
-          type: array
-          items:
-            $ref: '#/components/schemas/Entitlement'
-    EntitlementRequest:
-      type: object
-      required:
-      - customerId
-      - productId
-      properties:
-        customerId:
-          type: string
-          description: Synopsys Cloud customer identifier.
-        productId:
-          type: string
-          description: Product/tool identifier for which licenses are requested.
-        requestId:
-          type: string
-          description: Unique request identifier for traceability.
   securitySchemes:
     apiKeyAuth:
       type: apiKey

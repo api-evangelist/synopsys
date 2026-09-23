@@ -1,7 +1,9 @@
 ---
 title: Synopsys, Inc. | Investor Relations & Investor Resources
 url: https://investor.synopsys.com/overview/default.aspx
-date: '2026-05-25'
+published: ''
+date_basis: harvested
+harvested: '2026-05-25'
 query: '"Synopsys" press release artificial intelligence'
 position: 3
 source: serpapi-google

@@ -87,6 +87,18 @@ paths:
                 $ref: '#/components/schemas/BranchList'
 components:
   schemas:
+    ProjectList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Project'
+        meta:
+          type: object
+          properties:
+            totalCount:
+              type: integer
     Project:
       type: object
       properties:
@@ -119,18 +131,6 @@ components:
                 type: string
               projectId:
                 type: string
-    ProjectList:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Project'
-        meta:
-          type: object
-          properties:
-            totalCount:
-              type: integer
   securitySchemes:
     bearerAuth:
       type: http

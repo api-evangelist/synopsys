@@ -1,7 +1,9 @@
 ---
 title: NVIDIA | Synopsys Partnership
 url: https://www.synopsys.com/partners/nvidia.html
-date: '2026-05-25'
+published: ''
+date_basis: harvested
+harvested: '2026-05-25'
 query: '"Synopsys" press release artificial intelligence'
 position: 5
 source: serpapi-google
