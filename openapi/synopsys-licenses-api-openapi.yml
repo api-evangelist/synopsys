@@ -74,42 +74,6 @@ paths:
           description: License not found
 components:
   schemas:
-    AsyncLicenseResponse:
-      type: object
-      properties:
-        licenseId:
-          type: string
-        downloadType:
-          type: string
-          enum:
-          - Async
-        pollStartDateTime:
-          type: string
-          format: date-time
-          description: When to begin polling for the license.
-        pollIntervalSec:
-          type: integer
-          description: Suggested polling interval in seconds.
-        downloadApi:
-          type: object
-          properties:
-            url:
-              type: string
-              description: URL to poll for license retrieval.
-    ErrorResponse:
-      type: object
-      properties:
-        code:
-          type: string
-          description: Vendor-specific error code.
-        message:
-          type: string
-          description: Customer-facing error description.
-        statusCode:
-          type: integer
-        tid:
-          type: string
-          description: Optional trace identifier.
     LicenseResponse:
       type: object
       properties:
@@ -141,6 +105,42 @@ components:
           description: Machine or host identifier for license binding.
         quantity:
           type: integer
+    ErrorResponse:
+      type: object
+      properties:
+        code:
+          type: string
+          description: Vendor-specific error code.
+        message:
+          type: string
+          description: Customer-facing error description.
+        statusCode:
+          type: integer
+        tid:
+          type: string
+          description: Optional trace identifier.
+    AsyncLicenseResponse:
+      type: object
+      properties:
+        licenseId:
+          type: string
+        downloadType:
+          type: string
+          enum:
+          - Async
+        pollStartDateTime:
+          type: string
+          format: date-time
+          description: When to begin polling for the license.
+        pollIntervalSec:
+          type: integer
+          description: Suggested polling interval in seconds.
+        downloadApi:
+          type: object
+          properties:
+            url:
+              type: string
+              description: URL to poll for license retrieval.
   securitySchemes:
     apiKeyAuth:
       type: apiKey
