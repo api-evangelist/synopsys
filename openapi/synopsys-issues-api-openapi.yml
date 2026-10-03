@@ -84,6 +84,18 @@ paths:
                 $ref: '#/components/schemas/Issue'
 components:
   schemas:
+    IssueList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Issue'
+        meta:
+          type: object
+          properties:
+            totalCount:
+              type: integer
     Issue:
       type: object
       properties:
@@ -120,18 +132,6 @@ components:
           - open
           - dismissed
           - fixed
-    IssueList:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Issue'
-        meta:
-          type: object
-          properties:
-            totalCount:
-              type: integer
   securitySchemes:
     bearerAuth:
       type: http

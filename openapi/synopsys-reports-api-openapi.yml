@@ -58,6 +58,31 @@ paths:
           description: Report still generating
 components:
   schemas:
+    Report:
+      type: object
+      properties:
+        reportId:
+          type: string
+        projectId:
+          type: string
+        format:
+          type: string
+        generatedAt:
+          type: string
+          format: date-time
+        downloadUrl:
+          type: string
+    ReportJob:
+      type: object
+      properties:
+        reportId:
+          type: string
+        status:
+          type: string
+          enum:
+          - pending
+          - generating
+          - ready
     ReportRequest:
       type: object
       required:
@@ -76,31 +101,6 @@ components:
           - csv
         includeFixed:
           type: boolean
-    ReportJob:
-      type: object
-      properties:
-        reportId:
-          type: string
-        status:
-          type: string
-          enum:
-          - pending
-          - generating
-          - ready
-    Report:
-      type: object
-      properties:
-        reportId:
-          type: string
-        projectId:
-          type: string
-        format:
-          type: string
-        generatedAt:
-          type: string
-          format: date-time
-        downloadUrl:
-          type: string
   securitySchemes:
     bearerAuth:
       type: http
