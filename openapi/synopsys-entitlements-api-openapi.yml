@@ -45,6 +45,29 @@ paths:
           description: Unauthorized
 components:
   schemas:
+    EntitlementResponse:
+      type: object
+      properties:
+        customerId:
+          type: string
+        entitlements:
+          type: array
+          items:
+            $ref: '#/components/schemas/Entitlement'
+    ErrorResponse:
+      type: object
+      properties:
+        code:
+          type: string
+          description: Vendor-specific error code.
+        message:
+          type: string
+          description: Customer-facing error description.
+        statusCode:
+          type: integer
+        tid:
+          type: string
+          description: Optional trace identifier.
     Entitlement:
       type: object
       properties:
@@ -63,15 +86,6 @@ components:
         licenseRequestApi:
           type: string
           description: Dynamic URL for license generation for this entitlement.
-    EntitlementResponse:
-      type: object
-      properties:
-        customerId:
-          type: string
-        entitlements:
-          type: array
-          items:
-            $ref: '#/components/schemas/Entitlement'
     EntitlementRequest:
       type: object
       required:
@@ -87,20 +101,6 @@ components:
         requestId:
           type: string
           description: Unique request identifier for traceability.
-    ErrorResponse:
-      type: object
-      properties:
-        code:
-          type: string
-          description: Vendor-specific error code.
-        message:
-          type: string
-          description: Customer-facing error description.
-        statusCode:
-          type: integer
-        tid:
-          type: string
-          description: Optional trace identifier.
   securitySchemes:
     apiKeyAuth:
       type: apiKey

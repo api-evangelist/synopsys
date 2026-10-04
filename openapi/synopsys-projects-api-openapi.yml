@@ -87,20 +87,6 @@ paths:
                 $ref: '#/components/schemas/BranchList'
 components:
   schemas:
-    BranchList:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            type: object
-            properties:
-              id:
-                type: string
-              name:
-                type: string
-              projectId:
-                type: string
     ProjectList:
       type: object
       properties:
@@ -131,6 +117,20 @@ components:
           type: array
           items:
             type: string
+    BranchList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              name:
+                type: string
+              projectId:
+                type: string
   securitySchemes:
     bearerAuth:
       type: http
