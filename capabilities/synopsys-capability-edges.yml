@@ -1,0 +1,38 @@
+slug: synopsys
+provider: Synopsys
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Electrical Components & Equipment
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 2
+edges:
+- tag: Scans
+  spec_file: synopsys-scans-api-openapi.yml
+  capability_id: BC-620.40
+  capability_id_l1: BC-620
+  capability_name: Vulnerability Management
+  confidence: 0.75
+  evidence: '"programmatic access to application security testing operations including project management,
+    scan triggering, issue retrieval"; GET /jobs/runs listScans "List Scans"'
+  reason: The operations list and retrieve application security testing scan runs (SAST/SCA scanning of
+    code), which is the scanning side of vulnerability identification. Mapped to Vulnerability Management
+    under Cybersecurity Management; moderate confidence since the surface is only scan-run listing rather
+    than full remediation workflow.
+- tag: Issues
+  spec_file: synopsys-issues-api-openapi.yml
+  capability_id: BC-620.40
+  capability_id_l1: BC-620
+  capability_name: Vulnerability Management
+  confidence: 0.7
+  evidence: 'description: "application security testing operations including project management, scan
+    triggering, issue retrieval"; GET /issues "List Issues"'
+  reason: Issues here are findings produced by SAST/SCA scanning on the Polaris application security platform,
+    i.e. security vulnerability findings for triage and remediation. Some ambiguity with software defect
+    management, so 0.7 rather than higher.
