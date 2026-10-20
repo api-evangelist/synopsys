@@ -12,6 +12,11 @@ checked:
 - https://raw.githubusercontent.com/ossf/ossf-landscape/0c5085851606608158f3adb796e5c22265ee174d/landscape.yml
 - https://spdx.dev/use/spdx-tools/
 - https://www.openchainproject.org/community-of-conformance
+- https://landscape.aousd.org/data/full.json
+- https://www.khronos.org/conformance/adopters/conformant-companies
+- https://www.khronos.org/conformance/adopters/conformant-products
+- https://www.khronos.org/conformance/adopters/file-format-adopters
+- https://www.khronos.org/members/list
 marketplace_apps: []
 edges:
 - partner_name: GitHub Marketplace (actions)
@@ -141,6 +146,48 @@ edges:
     detected_by: sweep-compliance-assurance.py
     detected: '2026-10-20'
   detected_by: sweep-compliance-assurance.py
+  first_seen: '2026-10-20'
+- partner_name: Khronos Group conformant products
+  partner: null
+  partner_match: register
+  type: register
+  direction: partner-built
+  evidence: https://www.khronos.org/conformance/adopters/conformant-products/openvx#submission_65
+  category: graphics API conformance
+  channel: standard-directory
+  relationship: standard-participant
+  contract_reference:
+    register: Khronos Group conformant products + API adopters (khronos.org/conformance/adopters)
+    standard: Khronos conformance
+    spec_file: null
+    role: khronos-conformant-adopter
+    registered_name: Synopsys, Inc.
+    register_id: https://www.khronos.org/conformance/adopters/conformant-products/openvx#submission_65
+    matched_domain: synopsys.com
+    matched_by: domain
+    certified_products:
+    - product: OpenVX
+      lapsed: false
+      newest_submission: '2018-06-17'
+      versions:
+      - OpenVX_1_0
+      - OpenVX_1_1
+      - OpenVX_1_2
+      submissions_listed: 12
+    products_sample:
+    - EV52
+    - EV54
+    - Synopsys EV6x processor EV61
+    - Synopsys EV6x processor EV61 configuration
+    - Synopsys EV6x processor EV62 configuration
+    - Synopsys EV6x processor EV62 configurations
+    - Synopsys EV6x processor EV64 configurations
+    signal_note: certified_products = one entry per Khronos API the company is a conformant adopter of (the API
+      Adopters page), never per submission or product; dates, versions and submission counts are context. Khronos
+      marks no conformance as superseded or lapsed, so lapsed is false
+    detected_by: sweep-xr-graphics.py
+    detected: '2026-10-20'
+  detected_by: sweep-xr-graphics.py
   first_seen: '2026-10-20'
 source:
 - https://github.com/marketplace?type=actions
