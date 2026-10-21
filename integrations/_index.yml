@@ -163,3 +163,36 @@
     detected: '2026-10-20'
   status: not-a-workflow
   arazzo: null
+- slug: synopsys-open-compute-project-marketplace
+  label: Open Compute Project marketplace
+  partner_name: Open Compute Project marketplace
+  category: data-center hardware marketplace listing
+  type: register
+  channel: standard-directory
+  evidence: https://www.opencompute.org/marketplace/it-infrastructure/synopsys-3dio-platform/
+  source: edge
+  relationship: standard-participant
+  contract_reference:
+    register: Open Compute Project marketplace (opencompute.org/products; /wp-json/wp/v2/marketplace + /companies)
+    standard: Open Compute Project
+    spec_file: null
+    role: ocp-marketplace-listing
+    registered_name: Synopsys
+    register_id: https://www.opencompute.org/members/synopsys/
+    matched_domain: synopsys.com
+    matched_by: domain
+    listings: 5
+    recognised_listings: 0
+    products_sample:
+    - Synopsys 3DIC Compiler Platform
+    - Synopsys 3DIO Platform
+    - Synopsys HBM IP
+    - Synopsys Platform Architect for Multi-Die
+    - Synopsys UCIe IP
+    signal_note: certified_products = one entry per product type (OCP recognition + most specific marketplace segment)
+      among OCP-recognised listings; unrecognised listings are listing alone (participation). The REST data marks
+      no listing archived, so lapsed is false. Listing counts are context, never counted
+    detected_by: sweep-semiconductor-consortia.py
+    detected: '2026-10-21'
+  status: not-a-workflow
+  arazzo: null
