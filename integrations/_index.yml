@@ -196,3 +196,51 @@
     detected: '2026-10-21'
   status: not-a-workflow
   arazzo: null
+- slug: synopsys-usb-if-certified-products
+  label: USB-IF certified products
+  partner_name: USB-IF certified products
+  category: USB compliance certification
+  type: register
+  channel: standard-directory
+  evidence: https://www.usb.org/products
+  source: edge
+  relationship: standard-participant
+  contract_reference:
+    register: USB-IF certified product list (usb.org/products)
+    standard: USB-IF Compliance Program
+    spec_file: null
+    role: usb-if-certified-product
+    registered_name: Synopsys, Inc.
+    register_id: https://www.usb.org/products
+    matched_domain: null
+    matched_by: register-name
+    register_name_note: register-name 'synopsys' = synopsys; wikidata P856 synopsys.com agrees or unheld
+    certified_products:
+    - product: USB certified product (unclassified)
+      lapsed: true
+      newest_certification: '2018-07-09'
+    - product: USB peripherals
+      lapsed: true
+      newest_certification: '2022-01-17'
+    - product: USB silicon and IP
+      lapsed: false
+      newest_certification: '2026-09-11'
+    products_sample:
+    - A152 Single Port Hi-Speed USB PHY/ A152-130-N04-B
+    - A162-090-TD01-A
+    - A168-130-ZC03-A
+    - Custom DWC USB 2.0 PHY, TSMC 16FF / 632
+    - Custom DWC USB 2.0 PHY, TSMC 16FF2
+    - DESIGNWARE CORES USB 2.0 HOST CONTROLLER
+    - DWC AG USB 2.0 femtoPHY, TSMC N7
+    - DWC HS USB Controller_O Core & A204 65LP nanoPHY
+    signal_note: certified_products = one entry per USB product family, never per product or TID. lapsed = the family's
+      NEWEST certification is older than two years (USB-IF's own list hides those and says they may fail the current
+      Compliance Program)
+    detected_by: sweep-wireless-connectivity-certification.py
+    detected: '2026-10-22'
+    identity_source: register-name
+    identity_note: register gave only the name; exact normalised match to the repo's apis.yml name, one repo, Wikidata
+      P856 not contradicting (Kin 2026-10-20 decision 2)
+  status: not-a-workflow
+  arazzo: null
