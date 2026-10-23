@@ -192,6 +192,9 @@ apis:
   - type: Documentation
     url: https://www.synopsys.com/cloud/openlink/api.html
 common:
+  - type: CapabilityMap
+    url: capabilities/synopsys-capability-edges.yml
+    name: Synopsys Business Capability Map
   - type: Plans
     url: plans/synopsys-plans-pricing.yml
   - type: RateLimits
